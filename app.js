@@ -5,6 +5,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cookiePaser = require('cookie-parser')
 
+
 const Blog = require("./models/blog")
 
 const userRoute = require("./routes/user");
@@ -13,11 +14,12 @@ const blogRoute = require("./routes/blog")
 const { checkForAuthenticationCookie } = require("./middlewares/authentication");
 
 
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/blogify")
+  .connect(process.env.MONGO_URL)
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.error("MongoDB Connection Error:", err));
 
